@@ -7,15 +7,25 @@ import { ItemTodo } from "../app/App";
 import "./todo-list.css";
 
 export interface  TodoListProps {
-    todos: ItemTodo[]
+    todos: ItemTodo[],
+    onDeleted: (id: number) => void,
+    onToggleDone: (id: number) => void,
+    onToggleImportant: (id: number) => void
 }
 
-export const TodoList: React.FC<TodoListProps> = ( { todos } ):JSX.Element => {
+export const TodoList: React.FC<TodoListProps> = (
+    { todos, onDeleted, onToggleDone, onToggleImportant } ):JSX.Element => {
+
+
     const elements = todos.map((item) => {
         const { id, ...itemProps } = item;
         return (
             <li key={id} className="list-group-item">
-                <TodoListItem {...itemProps } />
+                <TodoListItem
+                    onToggleDone={() => onToggleDone(id)}
+                    onToggleImportant={() => onToggleImportant(id)}
+                    onDeleted={ () => onDeleted(id) }
+                    {...itemProps } />
             </li>
         );
     })
