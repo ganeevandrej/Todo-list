@@ -7,6 +7,7 @@ import { ItemStatusFilter } from "../item-status-filter";
 import { ItemAddForm } from "../item-add-form";
 
 import './App.css';
+import {EmptyTodoList} from "../empty-todo-list";
 
 export type ItemTodo = {
     id: number;
@@ -15,13 +16,17 @@ export type ItemTodo = {
     done: boolean;
 }
 
-type propName = "important" | "done";
+export type TypePropName = "important" | "done";
+
+export type TypeFilter = "active" | "done" | "all"
 
 export const App: React.FC = (): JSX.Element => {
     const [todos, setTodos] = useState<ItemTodo[]>([]);
     const [maxId, setMaxId] = useState<number>(1);
+    const [term, setTerm] = useState<string>("");
+    const [filter, setFilter] = useState<TypeFilter>("all");
 
-    const toggleProperty = (arr: ItemTodo[], id: number, propName: propName) => {
+    const toggleProperty = (arr: ItemTodo[], id: number, propName: TypePropName) => {
         const idx = arr.findIndex((el) => el.id === id);
 
         const oldItem = arr[idx];
@@ -58,6 +63,29 @@ export const App: React.FC = (): JSX.Element => {
         }
     }
 
+    const search = (items: ItemTodo[], term: string): ItemTodo[] => {
+        if(term.length === 0) {
+            return items;
+        }
+
+        return items.filter((item) => item.label
+            .toLowerCase()
+            .indexOf(term.toLowerCase()) > -1 );
+    }
+
+    const itemsFilter = (items: ItemTodo[], filter: string): ItemTodo[] => {
+        switch (filter) {
+            case "all":
+                return items;
+            case "active":
+                return items.filter(({done}) => !done );
+            case "done":
+                return items.filter(({done}) => done );
+            default:
+                return items;
+        }
+    }
+
     const onToggleDone = (id: number) => {
         setTodos(( todos ) => {
             return toggleProperty(todos, id, "done");
@@ -72,21 +100,27 @@ export const App: React.FC = (): JSX.Element => {
 
     const doneCount = todos.filter(({ done }) => done).length;
     const todoCount = todos.length - doneCount;
+    const visibleItems = search(itemsFilter(todos, filter), term);
+
+    const todolist = <TodoList
+        onDeleted={ deleteItem }
+        onToggleDone={onToggleDone}
+        onToggleImportant={onToggleImportant}
+        todos={ visibleItems }
+    />
+
+    const isTodoList = todos.length > 0 ? todolist : <EmptyTodoList />
 
     return (
         <div className="todo-app">
             <AppHeader toDo={todoCount} done={doneCount}/>
             <div className="top-panel d-flex">
-                <SearchPanel/>
-                <ItemStatusFilter/>
+                <SearchPanel onChangeSearch={(term: string) => setTerm(term)} />
+                <ItemStatusFilter filter={filter} onClickFilter={(filter) => setFilter(filter)} />
             </div>
 
-            <TodoList
-                onDeleted={ deleteItem }
-                onToggleDone={onToggleDone}
-                onToggleImportant={onToggleImportant}
-                todos={ todos }
-            />
+            { isTodoList }
+
             <ItemAddForm onItemAdded={ addItem } />
         </div>
     );
