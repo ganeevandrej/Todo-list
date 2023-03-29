@@ -1,10 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+
+import { SearchPanelProps } from "../../services/types";
 
 import "./search-panel.css";
-
-interface SearchPanelProps {
-    onChangeSearch: (str: string) => void
-}
 
 export const SearchPanel: React.FC<SearchPanelProps> = ({ onChangeSearch }):JSX.Element => {
     const [term, setTerm] = useState<string>("");

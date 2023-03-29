@@ -1,20 +1,11 @@
 import React from "react";
 
-import { TypeFilter } from "../app/App";
+import { ItemStatusFilterProps, TypeButtons } from "../../services/types";
 
 import './item-status-filter.css';
 
-interface ItemStatusFilterProps {
-    filter: TypeFilter;
-    onClickFilter: (str: TypeFilter) => void
-}
-
-type TypeButtons = {
-    name: TypeFilter,
-    label: string
-}
-
-export const ItemStatusFilter: React.FC<ItemStatusFilterProps> = ({ onClickFilter, filter }):JSX.Element => {
+export const ItemStatusFilter:
+    React.FC<ItemStatusFilterProps> = ({ onClickFilter, filter }):JSX.Element => {
     const buttons: TypeButtons[] = [
         { name: "all", label: "All" },
         { name: "active", label: "Active" },

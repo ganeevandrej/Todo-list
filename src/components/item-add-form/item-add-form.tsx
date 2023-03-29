@@ -1,10 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+
+import { ItemAddFormProps } from "../../services/types";
 
 import "./item-add-form.css";
-
-interface ItemAddFormProps {
-    onItemAdded: (str: string) => void,
-}
 
 export const ItemAddForm: React.FC<ItemAddFormProps> = ({onItemAdded }): JSX.Element => {
     const [label, setLabel] = useState<string>("");

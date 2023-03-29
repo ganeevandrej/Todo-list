@@ -1,11 +1,8 @@
 import React from "react";
 
-import "./app-header.css";
+import { AppHeaderProps } from "../../services/types";
 
-interface AppHeaderProps {
-    toDo: number,
-    done: number
-}
+import "./app-header.css";
 
 export const AppHeader: React.FC<AppHeaderProps> = ({ toDo, done }):JSX.Element => {
     return (

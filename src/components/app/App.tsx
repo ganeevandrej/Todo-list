@@ -5,39 +5,18 @@ import { SearchPanel } from "../search-panel";
 import { TodoList } from "../todo-list";
 import { ItemStatusFilter } from "../item-status-filter";
 import { ItemAddForm } from "../item-add-form";
+import { EmptyTodoList } from "../empty-todo-list";
+
+import { ItemTodo, TypeFilter } from "../../services/types";
+import { toggleProperty } from "../../services/utils";
 
 import './App.css';
-import {EmptyTodoList} from "../empty-todo-list";
-
-export type ItemTodo = {
-    id: number;
-    label: string;
-    important: boolean;
-    done: boolean;
-}
-
-export type TypePropName = "important" | "done";
-
-export type TypeFilter = "active" | "done" | "all"
 
 export const App: React.FC = (): JSX.Element => {
     const [todos, setTodos] = useState<ItemTodo[]>([]);
     const [maxId, setMaxId] = useState<number>(1);
     const [term, setTerm] = useState<string>("");
     const [filter, setFilter] = useState<TypeFilter>("all");
-
-    const toggleProperty = (arr: ItemTodo[], id: number, propName: TypePropName) => {
-        const idx = arr.findIndex((el) => el.id === id);
-
-        const oldItem = arr[idx];
-
-        const newItem = {
-            ...oldItem,
-            [propName]: !oldItem[propName],
-        }
-
-        return [...arr.slice(0, idx), newItem , ...arr.slice(idx + 1 )]
-    }
 
     const deleteItem = (id: number) => {
         setTodos(( todos ) => {

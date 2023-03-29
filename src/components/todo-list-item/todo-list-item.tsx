@@ -1,19 +1,12 @@
 import React from "react";
 
+import { TodoListItemProps } from "../../services/types";
+
 import "./todo-list-item.css";
 
-interface TodoListItemProps {
-    label: string,
-    important: boolean,
-    done: boolean,
-    onDeleted: () => void,
-    onToggleDone: () => void,
-    onToggleImportant: () => void
-}
-
-export const TodoListItem:
-    React.FC<TodoListItemProps> = (
-        { label, done, important, onDeleted, onToggleDone, onToggleImportant }):JSX.Element => {
+export const TodoListItem: React.FC<TodoListItemProps> = (
+    { label, done, important,
+        onDeleted, onToggleDone, onToggleImportant }):JSX.Element => {
     let classNames = 'todo-list-item';
 
     if(done) {
