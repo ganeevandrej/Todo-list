@@ -2,7 +2,15 @@
 
 Небольшое учебное приложение для управления списком задач.
 
-Проект сделан в рамках погружения в TypeScript и набивки руки на типизации компонентов, пропсов, событий и состояния в React.
+Проект сделан в рамках погружения в TypeScript и практики на типизации компонентов, пропсов, событий и состояния в React.
+
+## Demo
+
+- Live demo: https://ganeevandrej.github.io/Todo-list/
+
+## Preview
+
+![Todo List UI preview](./assets/preview.png)
 
 ## Что реализовано
 
@@ -21,6 +29,7 @@
 - Create React App
 - Bootstrap 4 для базовой стилизации
 - Font Awesome для иконок
+- GitHub Actions + GitHub Pages для деплоя
 
 ## Структура проекта
 
