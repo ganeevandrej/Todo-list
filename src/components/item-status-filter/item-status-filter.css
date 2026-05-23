@@ -1,0 +1,21 @@
+.btn-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    min-width: 260px;
+    padding: 6px;
+    border-radius: 18px;
+    background: rgba(121, 97, 79, 0.08);
+}
+
+.btn-group .btn {
+    min-height: 52px;
+    border-radius: 12px !important;
+}
+
+@media (max-width: 576px) {
+    .btn-group {
+        min-width: 0;
+        width: 100%;
+    }
+}

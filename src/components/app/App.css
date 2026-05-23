@@ -1,8 +1,107 @@
+:root {
+    --bg: #f4efe7;
+    --surface: rgba(255, 255, 255, 0.78);
+    --surface-strong: #ffffff;
+    --border: rgba(76, 57, 42, 0.12);
+    --text: #2e241d;
+    --muted: #7b6a5d;
+    --accent: #c96f4a;
+    --accent-dark: #a75534;
+    --accent-soft: #f7e3d8;
+    --success-soft: #dff3ea;
+    --shadow: 0 18px 45px rgba(87, 57, 37, 0.14);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(201, 111, 74, 0.18), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(119, 162, 122, 0.16), transparent 24%),
+        linear-gradient(160deg, #f7f1e8 0%, #efe5d8 100%);
+}
+
+#root {
+    min-height: 100vh;
+    padding: 40px 16px;
+}
+
 .todo-app {
-    margin: 2rem auto 0 auto;
-    max-width: 400px;
+    margin: 0 auto;
+    max-width: 760px;
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
 }
 
 .top-panel {
-    margin: 1rem 0;
+    display: flex;
+    gap: 12px;
+    margin: 28px 0 22px;
+}
+
+input.form-control {
+    height: 52px;
+    border: 1px solid rgba(76, 57, 42, 0.14);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.84);
+    color: var(--text);
+    box-shadow: none;
+}
+
+input.form-control:focus {
+    border-color: rgba(201, 111, 74, 0.5);
+    box-shadow: 0 0 0 4px rgba(201, 111, 74, 0.12);
+}
+
+.btn {
+    border-radius: 14px;
+    font-weight: 600;
+    box-shadow: none !important;
+}
+
+.btn-outline-secondary {
+    color: var(--text);
+    border-color: rgba(76, 57, 42, 0.14);
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+    color: var(--text);
+    border-color: rgba(76, 57, 42, 0.2);
+    background: #f3ece3;
+}
+
+.btn-info {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+}
+
+.btn-info:hover,
+.btn-info:focus {
+    border-color: var(--accent-dark);
+    background: var(--accent-dark);
+    color: #fff;
+}
+
+@media (max-width: 576px) {
+    #root {
+        padding: 20px 12px;
+    }
+
+    .todo-app {
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .top-panel {
+        flex-direction: column;
+    }
 }

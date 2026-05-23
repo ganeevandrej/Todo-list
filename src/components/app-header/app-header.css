@@ -1,12 +1,35 @@
 .app-header {
+    display: flex;
     align-items: flex-end;
+    gap: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(76, 57, 42, 0.1);
 }
 
 .app-header h1 {
     flex-grow: 1;
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
 }
 
 .app-header h2 {
-    font-size: 1.2rem;
-    color: grey;
+    margin: 0;
+    font-size: 1rem;
+    color: #7b6a5d;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+    .app-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .app-header h2 {
+        white-space: normal;
+    }
 }
